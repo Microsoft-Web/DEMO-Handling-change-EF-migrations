@@ -16,6 +16,18 @@ In this demo, you will see how to:
 ### Setup and Configuration ###
 Follow these steps to setup your environment for the demo.
 
+1. Open Visual Studio 2013.
+1. Open the **GeekQuiz.sln** solution located under **source\begin**.
+1. In Visual Studio, close all open files.
+1. Make sure that you have an Internet connection, as this demo requires it to push to a remote git repository.
+1. Open the **Package Manager Console** and dock it in the bottom panel.
+1. Open the **SQL Server Object Explorer** and dock it in the left panel.
+1. Open the **Solution Explorer** and dock it in the right panel.
+
+
+After completing the aforementioned steps, the resulting Visual Studio layout should be similar to the one shown in the following figure.
+	![Visual Studio Layout](Images/vslayout.png?raw=true)
+
 <a name="Demo" />
 ## Demo ##
 This demo is composed of the following segments:
@@ -26,9 +38,20 @@ This demo is composed of the following segments:
 <a name="segment1" />
 ### Migrations ###
 
-1. `Enable-Migrations -ContextTypeName GeekQuiz.Models.TriviaContext`
+1. In **SQL Server Object Explorer**, expand the different nodes until the columns of the **dbo.TriviaQuestions** table are displayed. This is shown in the following figure.
 
-1. Add property to TriviaQuestion.
+	![Trivia Questions Columns](Images/trivia-questions-columns.png?raw=true)
+
+1. In the **Package Manager Console**, enter the following command and then press **Enter**. An initial migration based on the existing model will be created.
+	
+	<!-- mark:1 -->
+	````PowerShell
+	Enable-Migrations -ContextTypeName GeekQuiz.Models.TriviaContext
+	````
+
+1. In **Solution Explorer**, double-click the **TriviaQuestion.cs** file located inside the **Models** folder.
+
+1. Add the *Hint* property, as shown in the following code snippet.
 	
 	<!-- mark:10 -->
 	````C#
@@ -45,9 +68,24 @@ This demo is composed of the following segments:
 	}
 	````
 
-1. `Add-Migration QuestionHint`.
+1. In the **Package Manager Console**, enter the following command and then press **Enter**. A new migration will be created.
 
-1. `Update-Database -Verbose`.
+	<!-- mark:1 -->
+	````PowerShell
+	Add-Migration QuestionHint
+	````
+	
+	> **Speaking point:** Explain that the migration only accounts for the diff between the current model and the one from the previous migration. The `Up` method applies the changes to the target database and the `Down` method reverts those changes.
+
+1. In the **Package Manager Console**, enter the following command and then press **Enter**.
+
+	<!-- mark:1 -->
+	````PowerShell
+	Update-Database -Verbose
+	````
+
+1. Highlight the generated SQL statement that is displayed as part of the command's output, as highlighted in the following code snippet.
+	
 	<!-- mark:8 -->
 	````PowerShell
 	PM> Update-Database -Verbose
@@ -64,7 +102,15 @@ This demo is composed of the following segments:
 	Running Seed method.
 	````
 
-1. Add attribute.
+1. In **SQL Server Object Explorer**, click **Refresh**.
+
+	![refresh](Images/refresh.png?raw=true)
+
+1. Expand the different nodes until the columns of the **dbo.TriviaQuestions** table are displayed. The new **Hint** column will be displayed.
+
+	![Hint Column](Images/hint-column.png?raw=true)
+
+1. Back in the **TriviaQuestion.cs** editor, add a `StringLength` constraint to the _Hint_ property, as shown in the following code snippet.
 
 	<!-- mark:10 -->
 	````C#
@@ -81,9 +127,21 @@ This demo is composed of the following segments:
 		 public string Hint { get; set; }
 	}
 	````
-1. `Add-Migration QuestionHintLength`
 
-1. `Update-Database -Verbose`
+1. In the **Package Manager Console**, enter the following command and then press **Enter**.
+	
+	<!-- mark:1 -->
+	````PowerShell
+	Add-Migration QuestionHintLength
+	````
+1. In the **Package Manager Console**, enter the following command and then press **Enter**.
+
+	<!-- mark:1 -->
+	````PowerShell
+	Update-Database -Verbose
+	````
+
+1. Highlight the generated SQL statement that is displayed as part of the command's output, as highlighted in the following code snippet.
 	
 	<!-- mark:8 -->
 	````PowerShell
@@ -101,6 +159,7 @@ This demo is composed of the following segments:
 	Running Seed method.
 	````
 
-1. Highlight in SQL server object explorer.
+1. Refresh **SQL Server Object Explorer**, and expand the tree nodes until the node representing the **Hint** column is visible.
 
-	![Hint in server explorer](Images/hintserverexplorer.png?raw=true)
+	![constraint](Images/constraint.png?raw=true)
+	
