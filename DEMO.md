@@ -16,6 +16,9 @@ In this demo, you will see how to:
 ### Setup and Configuration ###
 Follow these steps to setup your environment for the demo.
 
+1. Copy the contents of the **source\begin** folder to a separate directory. Both demo segments start from the same begin solution, so you will need to remember the directory to where you copied the files for the second segment.
+1. Configure the **GeekQuiz** web site to support [Publishing with Git](http://www.windowsazure.com/en-us/develop/net/common-tasks/publishing-with-git/) and push the duplicate of the begin solution to the remote repository.
+1. **TODO**: Add step to setup DB as linked resource.
 1. Open Visual Studio 2013.
 1. Open the **GeekQuiz.sln** solution located under **source\begin**.
 1. In Visual Studio, close all open files.
@@ -23,7 +26,6 @@ Follow these steps to setup your environment for the demo.
 1. Open the **Package Manager Console** and dock it in the bottom panel.
 1. Open the **SQL Server Object Explorer** and dock it in the left panel.
 1. Open the **Solution Explorer** and dock it in the right panel.
-
 
 After completing the aforementioned steps, the resulting Visual Studio layout should be similar to the one shown in the following figure.
 	![Visual Studio Layout](Images/vslayout.png?raw=true)
@@ -163,3 +165,45 @@ This demo is composed of the following segments:
 
 	![constraint](Images/constraint.png?raw=true)
 	
+<a name="segment1" />
+### Deployment Rollback ###
+
+1. Open the **GeekQuiz.sln** solution that you copied to a separate folder during the setup phase.
+1. Double-click the **AnswersService.cs** file in **Solution Explorer**.
+1. Select the code highlighted in the following figure.
+
+	![Select Code](Images/select-code.png?raw=true)
+
+1. Right-click the selected code, expand the **Refactor** menu and select **Extract Method...**. 
+
+	![Extract Method](Images/extract-method.png?raw=true)
+
+1. Name the method _MatchesOption_. The resulting code is shown in the following snippet.
+
+	````C#
+	public async Task<bool> StoreAsync(TriviaAnswer answer)
+	{
+		 this.db.TriviaAnswers.Add(answer);
+
+		 await this.db.SaveChangesAsync();
+		 var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o =>
+			  MatchesOption(answer, o));
+
+		 return selectedOption.IsCorrect;
+	}
+
+	private static bool MatchesOption(TriviaAnswer answer, TriviaOption o)
+	{
+		 return o.Id == answer.OptionId
+							  && o.QuestionId == answer.QuestionId;
+	}
+	````
+
+1. [RAW] Save changes.
+
+1. [RAW] Push to repo.
+
+1. [RAW] Open web site and see failure.
+
+1. [RAW] Go to deployments and switch back to previous deployment.
+
