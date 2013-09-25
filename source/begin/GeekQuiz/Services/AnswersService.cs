@@ -19,7 +19,7 @@ namespace GeekQuiz.Services
 
             await this.db.SaveChangesAsync();
             var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o => 
-		o.Id == answer.OptionId
+		        o.Id == answer.OptionId
                 && o.QuestionId == answer.QuestionId);
 
             return selectedOption.IsCorrect;

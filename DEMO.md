@@ -9,16 +9,27 @@
 ### Goals ###
 In this demo, you will see how to:
 
+1. Update an existing database using Entity Framework migrations.
+1. Deploy your web site to Azure using Git.
+1. Roll back to previous deployment using the Azure Management portal.
+
 <a name="technologies" />
 ### Key Technologies ###
+
+1. [Entity Framework 6](http://entityframework.codeplex.com/wikipage?title=specs).
+1. [Git](http://git-scm.com/).
 
 <a name="setup" />
 ### Setup and Configuration ###
 Follow these steps to setup your environment for the demo.
 
 1. Copy the contents of the **source\begin** folder to a separate directory. Both demo segments start from the same begin solution, so you will need to remember the directory to where you copied the files for the second segment.
+1. Configure a SQL Azure Database following the steps provided in [this link](http://www.windowsazure.com/en-us/manage/services/web-sites/how-to-configure-websites/#howtoconfigSQL).
+1. In the **Configure** tab, update the connection string key for the DB to _DefaultConnection_ and save the changes.
+	![Default Connection](Images/default-connection.png?raw=true)
 1. Configure the **GeekQuiz** web site to support [Publishing with Git](http://www.windowsazure.com/en-us/develop/net/common-tasks/publishing-with-git/) and push the duplicate of the begin solution to the remote repository.
-1. **TODO**: Add step to setup DB as linked resource.
+1. Leave the management portal in a separate browser window/tab.
+1. Navigate to the created site and register an account.
 1. Open Visual Studio 2013.
 1. Open the **GeekQuiz.sln** solution located under **source\begin**.
 1. In Visual Studio, close all open files.
@@ -199,11 +210,44 @@ This demo is composed of the following segments:
 	}
 	````
 
-1. [RAW] Save changes.
+1. Press **CTRL + S** to save the changes.
 
-1. [RAW] Push to repo.
+1. Open the Git console and enter the following commands.
 
-1. [RAW] Open web site and see failure.
+	````PowerShell
+	git add .
 
-1. [RAW] Go to deployments and switch back to previous deployment.
+	git commit -m "Refactored answer check to a different method"
 
+	git push azure master
+	````
+
+1. Open the web site using IE 11.
+
+1. Log-in using the previously created credentials.
+
+	![Log in](Images/log-in.png?raw=true)
+
+1. Press **F12** to open the development tools, select the network tab and start recording.
+
+	![Network Recording](Images/network-recording.png?raw=true)
+
+1. Select any option. The web request will fail with a 500 error.
+
+	![500 error](Images/500-error.png?raw=true)
+
+1. Do not close the browser, and switch to the browser window/tab that has the management portal open.
+
+1. Open the web site and select the **DEPLOYMENTS** tab. Both commits will be listed in the deployment history.
+
+	![Existing Deployment](Images/existing-deployment.png?raw=true)
+
+1. Select the initial commit and click **REDEPLOY**.
+
+	![Redeploy](Images/redeploy.png?raw=true)
+
+1. When prompted to confirm, click **YES**.
+
+1. Once the deployment is finished, switch back to the web site and press **CTRL + F5**.
+	
+1. Click any of the options. The flip animation will take place and the result (correct/incorrect) will be displayed.
