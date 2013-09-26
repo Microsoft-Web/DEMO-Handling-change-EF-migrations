@@ -69,6 +69,11 @@
                 jQuery.post('/api/trivia', { 'questionId': question.id, 'optionId': option.id }, function (response) {
                     controller.set('answer', response ? 'correct' : 'incorrect');
                     controller.set('question.answered', true);
+                }).fail(function (error) {
+                    console.error("An error has occurred. Message:"
+                        + error.responseJSON.message
+                        + " Details: "
+                        + error.responseJSON.exceptionMessage);
                 });
             }
         });

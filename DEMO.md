@@ -228,15 +228,27 @@ This demo is composed of the following segments:
 
 	![Log in](Images/log-in.png?raw=true)
 
-1. Press **F12** to open the development tools, select the network tab and start recording.
+1. Press **F12** to open the development tools.
+
+1. Select the network tab and start recording.
 
 	![Network Recording](Images/network-recording.png?raw=true)
 
-1. Select any option. The web request will fail with a 500 error.
+1. Select any of the four answers. Nothing will happen.
+
+1. Show that the web request failed with a 500 error.
 
 	![500 error](Images/500-error.png?raw=true)
 
-1. Do not close the browser, and switch to the browser window/tab that has the management portal open.
+1. Select the console tab. An error will have been logged.
+
+	![Logged Error](Images/logged-error.png?raw=true)
+
+1. Highlight the  details part of the error: `Details: LINQ to Entities does not recognize the method 'Boolean MatchesOption`.
+
+	> **Speaking point:** This clearly point to the last refactoring. Let's rollback to the previous working version.
+
+1. Do not close the GeekQuiz site, and switch to the browser window/tab that has the management portal open.
 
 1. Open the web site and select the **DEPLOYMENTS** tab. Both commits will be listed in the deployment history.
 
