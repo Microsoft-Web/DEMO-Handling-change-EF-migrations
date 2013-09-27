@@ -1,4 +1,4 @@
-﻿# Building a SPA interface using Ember.js #
+﻿# Handling change (EF migrations, Deployment rollback) #
 
 ## Demo ##
 
