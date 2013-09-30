@@ -53,7 +53,9 @@ This demo is composed of the following segments:
 
 1. In **SQL Server Object Explorer**, expand the different nodes until the columns of the **dbo.TriviaQuestions** table are displayed. This is shown in the following figure.
 
-	![Trivia Questions Columns](Images/trivia-questions-columns.png?raw=true)
+	![Trivia Questions Columns](Images/trivia-questions-columns.png?raw=true "Trivia Questions Columns")
+
+	_Trivia Questions Columns_
 
 1. In the **Package Manager Console**, enter the following command and then press **Enter**. An initial migration based on the existing model will be created.
 	
@@ -117,11 +119,15 @@ This demo is composed of the following segments:
 
 1. In **SQL Server Object Explorer**, click **Refresh**.
 
-	![refresh](Images/refresh.png?raw=true)
+	![Clicking the refresh button](Images/refresh.png?raw=true "Clicking the refresh button")
+
+	_Clicking the refresh button_
 
 1. Expand the different nodes until the columns of the **dbo.TriviaQuestions** table are displayed. The new **Hint** column will be displayed.
 
-	![Hint Column](Images/hint-column.png?raw=true)
+	![Showing the new Hint Column](Images/hint-column.png?raw=true "Showing the new Hint Column")
+
+	_Showing the new Hint Column_
 
 1. Back in the **TriviaQuestion.cs** editor, add a `StringLength` constraint to the _Hint_ property, as shown in the following code snippet.
 
@@ -174,7 +180,9 @@ This demo is composed of the following segments:
 
 1. Refresh **SQL Server Object Explorer**, and expand the tree nodes until the node representing the **Hint** column is visible.
 
-	![constraint](Images/constraint.png?raw=true)
+	![Showing the new constrain](Images/constraint.png?raw=true "Showing the new constrain")
+
+	_Showing the new constrain_
 	
 <a name="segment1" />
 ### Deployment Rollback ###
@@ -183,14 +191,19 @@ This demo is composed of the following segments:
 1. Double-click the **AnswersService.cs** file in **Solution Explorer**.
 1. Select the code highlighted in the following figure.
 
-	![Select Code](Images/select-code.png?raw=true)
+	![Selecting the code](Images/select-code.png?raw=true "Selecting the code")
+
+	_Selecting the code_
 
 1. Right-click the selected code, expand the **Refactor** menu and select **Extract Method...**. 
 
-	![Extract Method](Images/extract-method.png?raw=true)
+	![Extracting code as a new method](Images/extract-method.png?raw=true "Extracting code as a new method")
+	
+	_Extracting code as a new method_
 
 1. Name the method _MatchesOption_. The resulting code is shown in the following snippet.
 
+	<!-- mark:6-7,12-16 -->
 	````C#
 	public async Task<bool> StoreAsync(TriviaAnswer answer)
 	{
@@ -226,23 +239,31 @@ This demo is composed of the following segments:
 
 1. Log-in using the previously created credentials.
 
-	![Log in](Images/log-in.png?raw=true)
+	![Log in](Images/log-in.png?raw=true "Log in")
+	
+	_Log in_
 
 1. Press **F12** to open the development tools.
 
 1. Select the network tab and start recording.
 
-	![Network Recording](Images/network-recording.png?raw=true)
+	![Starting Network Recording](Images/network-recording.png?raw=true "Starting Network Recording")
+
+	_Starting Network Recording_
 
 1. Select any of the four answers. Nothing will happen.
 
 1. Show that the web request failed with a 500 error.
 
-	![500 error](Images/500-error.png?raw=true)
+	![Showing the 500 error](Images/500-error.png?raw=true "Showing the 500 error")
+
+	_Showing the 500 error_
 
 1. Select the console tab. An error will have been logged.
 
-	![Logged Error](Images/logged-error.png?raw=true)
+	![Showing the logged error](Images/logged-error.png?raw=true "Showing the logged error")
+
+	_Showing the logged error_
 
 1. Highlight the  details part of the error: `Details: LINQ to Entities does not recognize the method 'Boolean MatchesOption`.
 
@@ -252,11 +273,15 @@ This demo is composed of the following segments:
 
 1. Open the web site and select the **DEPLOYMENTS** tab. Both commits will be listed in the deployment history.
 
-	![Existing Deployment](Images/existing-deployment.png?raw=true)
+	![Showing the existing deployments](Images/existing-deployment.png?raw=true "Showing the existing deployments")
+
+	_Showing the existing deployments_
 
 1. Select the initial commit and click **REDEPLOY**.
 
-	![Redeploy](Images/redeploy.png?raw=true)
+	![Redeploying the initial commit](Images/redeploy.png?raw=true "Redeploying the initial commit")
+
+	_Redeploying the initial commit_
 
 1. When prompted to confirm, click **YES**.
 
