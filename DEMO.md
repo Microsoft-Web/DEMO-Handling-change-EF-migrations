@@ -23,6 +23,13 @@ In this demo, you will see how to:
 ### Setup and Configuration ###
 Follow these steps to setup your environment for the demo.
 
+1. Follow the steps detailed in [this link](http://docs.nuget.org/docs/creating-packages/hosting-your-own-nuget-feeds) to setup local sources for the following directories:
+
+	* **C:\Program Files (x86)\Microsoft Web Tools\Packages**
+	* **C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Stack 5\Packages**
+
+	![NuGet Sources](Images/nuget-sources.png?raw=true)
+
 1. Copy the contents of the **source\begin** folder to a separate directory. Both demo segments start from the same begin solution, so you will need to remember the directory to where you copied the files for the second segment.
 1. Configure a SQL Azure Database following the steps provided in [this link](http://www.windowsazure.com/en-us/manage/services/web-sites/how-to-configure-websites/#howtoconfigSQL).
 1. In the **Configure** tab, update the connection string key for the DB to _DefaultConnection_ and save the changes.
