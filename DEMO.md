@@ -5,13 +5,17 @@
 <a name="Overview" />
 ## Overview ##
 
+In this demo you go through the steps of enabling Entity Framework migrations to GeekQuiz database, changing the model and understanding how those changes are reflected in the database. Additionally, you will deploy to windows Azure using Git and perform a rollback to the previous deployment from Windows Azure management portal.
+
 <a id="goals" />
 ### Goals ###
+
 In this demo, you will see how to:
 
-1. Update an existing database using Entity Framework migrations.
-1. Deploy your web site to Azure using Git.
-1. Roll back to previous deployment using the Azure Management portal.
+1. Enable Entity Framework migrations on an existing database
+1. Update the object model and database accordingly using Entity Framework migrations
+1. Deploy to Windows Azure using Git
+1. Rollback to a previous deployment using the Azure Management portal
 
 <a name="technologies" />
 ### Key Technologies ###
@@ -295,3 +299,16 @@ This demo is composed of the following segments:
 1. Once the deployment is finished, switch back to the web site and press **CTRL + F5**.
 	
 1. Click any of the options. The flip animation will take place and the result (correct/incorrect) will be displayed.
+
+---
+
+<a name="summary" />
+## Summary ##
+
+By completing this demo you should have:
+
+1. Used Entity Framework migrations to update GeekQuiz database to reflect the changes in the object model
+1. Deployed a change (bug) to Windows Azure using Git
+1. Rollback to the last working deployment using the Azure Management portal 
+
+---
